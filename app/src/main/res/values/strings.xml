@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Reverse Image Search</string>
+    <string name="title_activity_reverse_image_search_google">Search Image on Google</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+</resources>
