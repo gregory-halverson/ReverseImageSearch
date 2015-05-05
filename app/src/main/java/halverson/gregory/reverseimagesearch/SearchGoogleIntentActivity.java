@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import java.io.IOException;
 
 // Activity that intercepts view and share intents for images
-public class ReverseImageSearchGoogle extends ActionBarActivity
+public class SearchGoogleIntentActivity extends ActionBarActivity
 {
     // Asynchronous task for fetching Google hash of image
     class GoogleImageHashJob extends AsyncTask<Bitmap, Void, Integer>
@@ -45,7 +45,7 @@ public class ReverseImageSearchGoogle extends ActionBarActivity
         protected void onPostExecute(Integer result)
         {
             if (result == 0)
-                ReverseImageSearchGoogle.this.finish();
+                SearchGoogleIntentActivity.this.finish();
         }
     }
 
@@ -80,7 +80,7 @@ public class ReverseImageSearchGoogle extends ActionBarActivity
         }
     }
 
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -102,4 +102,5 @@ public class ReverseImageSearchGoogle extends ActionBarActivity
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }
