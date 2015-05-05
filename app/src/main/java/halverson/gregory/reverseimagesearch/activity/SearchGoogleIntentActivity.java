@@ -1,4 +1,4 @@
-package halverson.gregory.reverseimagesearch;
+package halverson.gregory.reverseimagesearch.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,11 +7,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import java.io.IOException;
+
+import halverson.gregory.reverseimagesearch.FileValidator;
+import halverson.gregory.reverseimagesearch.GoogleImageHash;
+import halverson.gregory.reverseimagesearch.R;
 
 // Activity that intercepts view and share intents for images
 public class SearchGoogleIntentActivity extends ActionBarActivity
@@ -57,27 +61,18 @@ public class SearchGoogleIntentActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reverse_image_search_google);
 
-        try
-        {
-            // Load intent
-            Intent intent = getIntent();
-            Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        // Load intent
+        Intent intent = getIntent();
+        Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
 
-            // Load image
-            ImageView imageView = (ImageView) findViewById(R.id.imageView);
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+        // Load image
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        Bitmap bitmap = ImageLoader.getInstance().loadImageSync(imageUri.toString());
+        imageView.setImageBitmap(bitmap);
 
-            // Display image
-            imageView.setImageBitmap(bitmap);
-
-            // Run hash job
-            GoogleImageHashJob job = new GoogleImageHashJob();
-            job.execute(bitmap);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        // Run hash job
+        GoogleImageHashJob job = new GoogleImageHashJob();
+        job.execute(bitmap);
     }
 
 /*

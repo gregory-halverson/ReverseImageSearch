@@ -7,12 +7,13 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".application.ReverseImageSearchApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SearchGoogleIntentActivity"
+            android:name=".activity.SearchGoogleIntentActivity"
             android:label="@string/title_activity_reverse_image_search_google" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -21,6 +22,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.SearchGoogleLauncherActivity"
+            android:label="@string/title_activity_search_google_launcher" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
